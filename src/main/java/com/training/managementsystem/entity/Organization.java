@@ -19,7 +19,7 @@ public class Organization {
 
     private String organizationAddress;
 
-    @OneToMany(mappedBy = "organization")
+    @OneToMany(mappedBy = "organization",cascade=CascadeType.ALL)
     private Set<Department> departments;
 
     public Integer getOrganizationId() {

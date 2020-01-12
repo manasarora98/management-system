@@ -30,6 +30,12 @@ public class DepartmentController {
 
     }
 
+    @GetMapping("/departments/{departmentId}/employees")
+    public void getEmployeesByDepartmentId(@PathVariable(value = "departmentId") Integer departmentId) {
+        departmentService.countOfEmployeesAtChildDepartments(departmentId);
+
+    }
+
 
 
 

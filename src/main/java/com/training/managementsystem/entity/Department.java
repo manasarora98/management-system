@@ -29,10 +29,10 @@ public class Department {
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department",cascade=CascadeType.ALL)
     private Set<Department> departments;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department",cascade=CascadeType.ALL)
     private Set<Employee> employees;
 
     public Integer getDepartmentId() {
