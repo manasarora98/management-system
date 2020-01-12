@@ -17,7 +17,10 @@ public class Employee {
     private String employeeLastName;
     private Integer employeeAge;
     private Double employeeSalary;
-    private Integer departmentId;
+
+//    private Integer departmentId;
+    @ManyToOne
+    private Department department;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -67,11 +70,13 @@ public class Employee {
         this.employeeSalary = employeeSalary;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
+
+
 }

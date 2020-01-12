@@ -1,9 +1,11 @@
 package com.training.managementsystem.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "ORGANIZATION")
+@Table(name = "ORGANIZATION", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "organizationCode")})
 public class Organization {
 
     @Id
@@ -13,11 +15,12 @@ public class Organization {
 
     private String organizationName;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private Character organizationCode;
-
     private String organizationAddress;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "organization_id")
+    private Set<Department> departments;
 
     public Integer getOrganizationId() {
         return organizationId;
@@ -50,4 +53,14 @@ public class Organization {
     public void setOrganizationAddress(String organizationAddress) {
         this.organizationAddress = organizationAddress;
     }
+
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
+    }
+
+
 }
