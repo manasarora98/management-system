@@ -16,9 +16,14 @@ public class Department {
     private String departmentName;
     @Column(unique = true)
     private Character departmentCode;
-    private Integer departmentParent;
+    //private Integer departmentParent;
+    @ManyToOne
+    private Department department;
     @ManyToOne
     private Organization organization;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_parent")
+    private Set<Department> departments;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Set<Employee> employees;
@@ -47,12 +52,12 @@ public class Department {
         this.departmentCode = departmentCode;
     }
 
-    public Integer getDepartmentParent() {
-        return departmentParent;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentParent(Integer departmentParent) {
-        this.departmentParent = departmentParent;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Organization getOrganization() {
@@ -63,7 +68,13 @@ public class Department {
         this.organization = organization;
     }
 
-//    private Integer organizationId;
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
+    }
 
     public Set<Employee> getEmployees() {
         return employees;
@@ -72,6 +83,4 @@ public class Department {
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
     }
-
-
 }
