@@ -9,7 +9,6 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Integer employeeId;
 
     private String employeeName;
@@ -18,8 +17,10 @@ public class Employee {
     private Integer employeeAge;
     private Double employeeSalary;
 
-//    private Integer departmentId;
+    //    private Integer departmentId;
+
     @ManyToOne
+    @JoinColumn(name="department_id")
     private Department department;
 
     public Integer getEmployeeId() {
@@ -77,6 +78,4 @@ public class Employee {
     public void setDepartment(Department department) {
         this.department = department;
     }
-
-
 }

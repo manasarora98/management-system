@@ -1,5 +1,8 @@
 package com.training.managementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,21 +14,25 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Integer departmentId;
     private String departmentName;
     @Column(unique = true)
     private Character departmentCode;
     //private Integer departmentParent;
+
+
     @ManyToOne
-    private Department department;
-    @ManyToOne
-    private Organization organization;
-    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_parent")
+    private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
+
+    @OneToMany(mappedBy = "department")
     private Set<Department> departments;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
+
+    @OneToMany(mappedBy = "department")
     private Set<Employee> employees;
 
     public Integer getDepartmentId() {

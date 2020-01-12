@@ -10,16 +10,16 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Integer organizationId;
 
     private String organizationName;
 
     @Column(unique = true)
     private Character organizationCode;
+
     private String organizationAddress;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id")
+
+    @OneToMany(mappedBy = "organization")
     private Set<Department> departments;
 
     public Integer getOrganizationId() {
@@ -61,6 +61,4 @@ public class Organization {
     public void setDepartments(Set<Department> departments) {
         this.departments = departments;
     }
-
-
 }
