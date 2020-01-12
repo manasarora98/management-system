@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DEPARTMENT")
-class Department {
+public class Department {
 
 
     @Id
@@ -14,6 +14,7 @@ class Department {
 
 
     private String departmentName;
+
 
     @Column(unique=true)
     private Character departmentCode;
