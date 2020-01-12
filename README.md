@@ -1,2 +1,2 @@
 # management-system
- An exaple for JPA Type of Mapping
+ An example for JPA Type of Mapping
